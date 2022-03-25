@@ -5,7 +5,7 @@ const reducer = (state, action) => {
     case actionTypes.ADD_STUDENTS:
       return {
         ...state,
-        students: [...state.students, ...action.payload.data],
+        students: [...action.payload.data],
       };
     case actionTypes.ADD_TAG:
       const index = state.students.findIndex((x) => x.id === action.payload.id);

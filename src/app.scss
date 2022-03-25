@@ -41,6 +41,7 @@ button {
     background-color: #fff;
     overflow-y: auto;
     scroll-behavior: smooth;
+    position: relative;
     &::-webkit-scrollbar {
       width: 5px;
       height: 8px;
@@ -50,6 +51,16 @@ button {
     /* Add a thumb */
     &::-webkit-scrollbar-thumb {
       background: #55595e;
+    }
+    .nav {
+      width: 49%;
+      position: fixed;
+      z-index: 1;
+      border-radius: 0.5rem;
+      background-color: #fff;
+    }
+    .student-list {
+      margin-top: 7rem;
     }
     .search-container {
       padding: 1rem 5px;

@@ -34,11 +34,12 @@ function App() {
       let val = [];
       if (obj.tags) {
         let tagRegex = new RegExp(`${searchTag}`, "i");
-        val = obj.tags.filter((x) => tagRegex.test(searchTag));
-      } else {
-        return false;
+        val = obj.tags.filter((x) => tagRegex.test(x));
+        if (val.length > 0) {
+          return true;
+        }
       }
-      return val.length > 0 ? true : false;
+      return false;
     };
 
     if (searchTag) {
@@ -62,41 +63,45 @@ function App() {
   return (
     <div className="main">
       <div className="students">
-        <div className="search-container">
-          <input
-            type="text"
-            name="fullname"
-            onChange={(e) => setSearchName(e.target.value)}
-            className="search"
-            placeholder="Search by name"
-          />
+        <div className="nav">
+          <div className="search-container">
+            <input
+              type="text"
+              name="fullname"
+              onChange={(e) => setSearchName(e.target.value)}
+              className="search"
+              placeholder="Search by name"
+            />
+          </div>
+          <div className="search-container">
+            <input
+              type="text"
+              name="tag"
+              onChange={(e) => setSearchTag(e.target.value)}
+              className="search"
+              placeholder="Search by tag"
+            />
+          </div>
         </div>
-        <div className="search-container">
-          <input
-            type="text"
-            name="tag"
-            onChange={(e) => setSearchTag(e.target.value)}
-            className="search"
-            placeholder="Search by tag"
-          />
+        <div className="student-list">
+          {searchName || searchTag
+            ? searchList.map((stud) => (
+                <Student
+                  details={stud}
+                  key={stud.id}
+                  expanded={expanded}
+                  handleExpanded={handleExpanded}
+                />
+              ))
+            : students.map((stud) => (
+                <Student
+                  details={stud}
+                  key={stud.id}
+                  expanded={expanded}
+                  handleExpanded={handleExpanded}
+                />
+              ))}
         </div>
-        {searchName
-          ? searchList.map((stud) => (
-              <Student
-                details={stud}
-                key={stud.id}
-                expanded={expanded}
-                handleExpanded={handleExpanded}
-              />
-            ))
-          : students.map((stud) => (
-              <Student
-                details={stud}
-                key={stud.id}
-                expanded={expanded}
-                handleExpanded={handleExpanded}
-              />
-            ))}
       </div>
     </div>
   );
