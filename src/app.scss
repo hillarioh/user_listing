@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+  .students {
+    width: 50%;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 8px;
+      background-color: #a8a5a5; /* or add it to the track */
+    }
+
+    /* Add a thumb */
+    &::-webkit-scrollbar-thumb {
+      background: #55595e;
+    }
+  }
+}

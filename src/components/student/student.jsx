@@ -1,4 +1,5 @@
 import React from "react";
+import "./student.scss";
 
 function Student({ details }) {
   const calculateAverage = () => {
@@ -9,15 +10,21 @@ function Student({ details }) {
   };
 
   return (
-    <div>
-      <img src={details.pic} alt="" />
-      <p>
-        {details.firstName} {details.lastName}
-      </p>
-      <p>Email: {details.email}</p>
-      <p>Company: {details.company}</p>
-      <p>Skill: {details.skill}</p>
-      <p>Average: {calculateAverage()}</p>
+    <div className="student">
+      <div className="profile">
+        <div className="profile-pic">
+          <img src={details.pic} alt="" />
+        </div>
+      </div>
+      <div>
+        <h3>
+          {details.firstName} {details.lastName}
+        </h3>
+        <p>Email: {details.email}</p>
+        <p>Company: {details.company}</p>
+        <p>Skill: {details.skill}</p>
+        <p>Average: {calculateAverage()}%</p>
+      </div>
     </div>
   );
 }
