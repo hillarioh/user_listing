@@ -1,0 +1,38 @@
+.student {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  padding: 0.5rem 1rem;
+  h3 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #55595e;
+    margin-left: 1rem;
+  }
+
+  .profile {
+    margin-right: 1rem;
+    .profile-pic {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      img {
+        width: 65px;
+        height: 65px;
+      }
+    }
+  }
+}

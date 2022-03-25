@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getStudents } from "utils/api";
 import Student from "components/student";
+import "app.scss";
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -18,10 +19,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {students.map((stud) => (
-        <Student details={stud} key={stud.id} />
-      ))}
+    <div className="main">
+      <div className="students">
+        {students.map((stud) => (
+          <Student details={stud} key={stud.id} />
+        ))}
+      </div>
     </div>
   );
 }
