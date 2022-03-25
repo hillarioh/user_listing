@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./student.scss";
+import StudentsContext from "store/context";
 import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 
 function Student({ details, expanded, handleExpanded }) {
   const [is_expanded, setIs_Expanded] = useState(false);
+  const [tag, setTag] = useState("");
+  const { addTag } = useContext(StudentsContext);
   const calculateAverage = () => {
     const { grades } = details;
     const getSum = (a, b) => parseInt(a) + parseInt(b);
@@ -15,6 +18,11 @@ function Student({ details, expanded, handleExpanded }) {
   const handleClick = (e) => {
     setIs_Expanded(!is_expanded);
     handleExpanded(details.id);
+  };
+
+  const handleSubmit = () => {
+    addTag(details.id, tag);
+    setTag("");
   };
 
   return (
@@ -37,12 +45,32 @@ function Student({ details, expanded, handleExpanded }) {
             {is_expanded &&
               expanded === details.id &&
               details.grades.map((grade, i) => (
-                <li>
+                <li key={i}>
                   <span>Test {i + 1}:</span>
                   <span>{grade}%</span>
                 </li>
               ))}
           </ul>
+          <div className="tag-container">
+            <div>
+              {details.tags &&
+                details.tags.map((tag, i) => (
+                  <span key={i} className="tag">
+                    {tag}
+                  </span>
+                ))}
+            </div>
+            <div>
+              <input
+                type="text"
+                name="tag"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                placeholder="Add a tag"
+              />
+              {tag && <button onClick={handleSubmit}>submit</button>}
+            </div>
+          </div>
         </div>
         <div className="expand">
           <span className="icon">

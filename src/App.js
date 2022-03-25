@@ -1,29 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getStudents } from "utils/api";
 import Student from "components/student";
+import StudentsContext from "store/context";
 import "app.scss";
 
 function App() {
-  const [students, setStudents] = useState([]);
   const [expanded, setExpanded] = useState("");
-  const [search, setSearch] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchTag, setSearchTag] = useState("");
   const [searchList, setSearchList] = useState([]);
+  const { students, addStudents } = useContext(StudentsContext);
 
   const getStudentList = async () => {
     try {
       let result = await getStudents();
-      setStudents(result?.data.students);
+      addStudents(result?.data.students);
     } catch (error) {
       console.log(error?.response?.data);
     }
   };
 
   const handleSearch = () => {
-    let myRegex = new RegExp(`${search}`, "i");
+    let list = students;
+    if (searchName) {
+      let nameRegex = new RegExp(`${searchName}`, "i");
 
-    const list = students?.filter((f) =>
-      myRegex.test(`${f.firstName} ${f.lastName}`)
-    );
+      list = list?.filter((f) =>
+        nameRegex.test(`${f.firstName} ${f.lastName}`)
+      );
+    }
+
+    const lookTag = (obj) => {
+      let val = [];
+      if (obj.tags) {
+        let tagRegex = new RegExp(`${searchTag}`, "i");
+        val = obj.tags.filter((x) => tagRegex.test(searchTag));
+      } else {
+        return false;
+      }
+      return val.length > 0 ? true : false;
+    };
+
+    if (searchTag) {
+      list = list?.filter((f) => lookTag(f));
+    }
     setSearchList(list);
   };
 
@@ -33,7 +53,7 @@ function App() {
 
   useEffect(() => {
     handleSearch();
-  }, [search]);
+  }, [searchName, searchTag]);
 
   useEffect(() => {
     getStudentList();
@@ -46,12 +66,21 @@ function App() {
           <input
             type="text"
             name="fullname"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearchName(e.target.value)}
             className="search"
             placeholder="Search by name"
           />
         </div>
-        {search
+        <div className="search-container">
+          <input
+            type="text"
+            name="tag"
+            onChange={(e) => setSearchTag(e.target.value)}
+            className="search"
+            placeholder="Search by tag"
+          />
+        </div>
+        {searchName
           ? searchList.map((stud) => (
               <Student
                 details={stud}
