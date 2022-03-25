@@ -5,6 +5,7 @@ import "app.scss";
 
 function App() {
   const [students, setStudents] = useState([]);
+  const [expanded, setExpanded] = useState("");
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState([]);
 
@@ -24,6 +25,10 @@ function App() {
       myRegex.test(`${f.firstName} ${f.lastName}`)
     );
     setSearchList(list);
+  };
+
+  const handleExpanded = (id) => {
+    setExpanded(id);
   };
 
   useEffect(() => {
@@ -47,8 +52,22 @@ function App() {
           />
         </div>
         {search
-          ? searchList.map((stud) => <Student details={stud} key={stud.id} />)
-          : students.map((stud) => <Student details={stud} key={stud.id} />)}
+          ? searchList.map((stud) => (
+              <Student
+                details={stud}
+                key={stud.id}
+                expanded={expanded}
+                handleExpanded={handleExpanded}
+              />
+            ))
+          : students.map((stud) => (
+              <Student
+                details={stud}
+                key={stud.id}
+                expanded={expanded}
+                handleExpanded={handleExpanded}
+              />
+            ))}
       </div>
     </div>
   );
