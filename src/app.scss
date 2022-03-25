@@ -27,5 +27,22 @@
     &::-webkit-scrollbar-thumb {
       background: #55595e;
     }
+    .search-container {
+      padding: 1rem 5px;
+
+      .search {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        font-family: "Raleway", sans-serif;
+        font-weight: 300;
+        font-size: 16px;
+        padding: 4px;
+        width: 100%;
+        &::placeholder {
+          color: #ccc;
+        }
+      }
+    }
   }
 }
