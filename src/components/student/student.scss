@@ -3,7 +3,6 @@
   display: flex;
   padding: 0.5rem 1rem;
   h3 {
-    font-family: "Raleway", sans-serif;
     font-weight: 700;
     font-size: 26px;
     text-transform: uppercase;
@@ -11,8 +10,7 @@
   }
   p,
   li {
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
     color: #55595e;
     margin-left: 1rem;
@@ -50,6 +48,22 @@
         span {
           flex: 100px;
         }
+      }
+    }
+    .tag-container {
+      margin: 1rem;
+      & > div {
+        display: flex;
+        margin: 0.5rem 0;
+      }
+      .tag {
+        font-weight: 400;
+        font-size: 14px;
+        color: #55595e;
+        background-color: #ccc;
+        border-radius: 3px;
+        padding: 6px 10px;
+        margin: 0.5rem;
       }
     }
   }

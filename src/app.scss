@@ -1,7 +1,31 @@
 * {
   box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
   padding: 0;
   margin: 0;
+}
+
+input[type="text"] {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-weight: 300;
+  font-size: 16px;
+  padding: 4px;
+  &::placeholder {
+    color: #ccc;
+  }
+}
+
+button {
+  border: 1px solid #a8a5a5;
+  font-weight: 300;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin: 0;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 .main {
@@ -31,17 +55,7 @@
       padding: 1rem 5px;
 
       .search {
-        outline: none;
-        border: none;
-        border-bottom: 1px solid #ccc;
-        font-family: "Raleway", sans-serif;
-        font-weight: 300;
-        font-size: 16px;
-        padding: 4px;
         width: 100%;
-        &::placeholder {
-          color: #ccc;
-        }
       }
     }
   }
